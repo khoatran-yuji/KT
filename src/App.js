@@ -57,6 +57,18 @@ class App extends Component {
 
   doneAll() {
     const { todoItems } = this.state;
+    let a = [];
+    let count = 0;
+    for (a of todoItems) {
+      if (a.isComplete === false) {
+        todoItems[count].isComplete = true;
+        count++;
+      }
+    }
+    console.log(todoItems);
+    this.setState({
+      todoItems,
+    });
   }
 
   onKeyUp(event) {
@@ -138,7 +150,15 @@ class App extends Component {
     return (
       <div className="App">
         <div className="Header">
-          <img src={tickAll} width={20} onClick={this.doneAll()} alt="..." />
+          <div>
+            <img
+              src={tickAll}
+              width={20}
+              alt="..."
+              onClick={() => this.doneAll()}
+            />
+          </div>
+
           <input
             type="text"
             ref={this.inputElement}
